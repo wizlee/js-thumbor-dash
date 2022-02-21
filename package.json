@@ -1,0 +1,23 @@
+{
+  "name": "js-thumbor-dash",
+  "version": "0.0.1",
+  "description": "A universal JavaScript library for integrating Dash's distributed image thumbnail service in client applications",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mayoreee/js-thumbor-dash.git"
+  },
+  "keywords": [
+    "thumbor",
+    "dash"
+  ],
+  "author": "mayoreee",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mayoreee/js-thumbor-dash/issues"
+  },
+  "homepage": "https://github.com/mayoreee/js-thumbor-dash#readme"
+}
