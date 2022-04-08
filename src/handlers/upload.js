@@ -101,9 +101,3 @@ async function createDocument(avatarUrl, params) {
         .catch((e) => console.error('Something went wrong:\n', e))
         .finally(() => client.disconnect());
 }
-
-uploadImage(fs.readFileSync("/Volumes/harddrive/Projects/js-thumbor-dash/js-thumbor-dash/tests/data/images/example.jpg"), "localhost:8888", {
-    ownerId: "3GVAAkyWDK68V92Evy4jrnYyBJamri8bXQakWbMedr93",
-    contractId: "Bw7U7xUiwoE5wkkrJxbBLdf442TiY63SDvCDZLNrzTHr",
-    mnemonic: "bulk chimney foam muscle detail matter snake purchase science exile upon marriage where history notice antique arm lawn upgrade hope athlete foam hidden false",
-});
