@@ -1,5 +1,4 @@
 import fetch from 'node-fetch';
-import fs from 'fs';
 import Dash from 'dash';
 import bs58 from 'bs58';
 import { generateUploadURL } from "../../src/url/generateUrl.js";
