@@ -12,73 +12,82 @@ import { generateUploadURL } from "../../src/url/generateUrl.js";
  * @param {*} params - document data [contractId, ownerId]
  */
 
-export async function uploadImage(image, server, params) {
+export async function uploadImage(image, masternode, params) {
+
+    const uploadUrl = generateUploadURL(masternode);
 
     fetch(
-        generateUploadURL(server), {
+        uploadUrl, {
         method: 'POST',
         body: image,
-    }
-    )
-        .then((response) => {
-            const avatarUrl = response.headers.get("location");
+    })
+        .then(async (response) => {
+            const avatarUrl = uploadUrl.split("/image")[0] + response.headers.get("location");
 
-            // Create a thumbanil contract document for the image
-            return createDocument(avatarUrl, params);
+            try {
+                const docProperties = await createDocProperties(avatarUrl, params);
+                return await submitDocument(docProperties, params);
+            } catch (err) {
+                return console.log(err);
+            }
         }
         )
-        .catch(err => console.log(err));
+        .catch((err) => console.log(err));
 }
 
 
 
 /**
- * Create thumbnail contract document
+ * Creates thumbnail document properties
  * @param {*} avatarUrl - thumbnail image url
  * @param {*} params - document data [contractId, ownerId]
  */
-async function createDocument(avatarUrl, params) {
+async function createDocProperties(avatarUrl, params) {
 
-    const ownerId = params.ownerId;
-    const contractId = params.contractId ? params.contractId : "Bw7U7xUiwoE5wkkrJxbBLdf442TiY63SDvCDZLNrzTHr";
-    const documentType = params.documentType ? params.documentType : "thumbnailField";
-    const field = avatarUrl;
-    const resizeValues = params.resizeValues ? params.resizeValues : [1, 1, 1200, 800];
-    const mnemonic = params.mnemonic;
-
-    if ((typeof ownerId === 'undefined') || (typeof mnemonic === 'undefined')) {
-        console.log("missing required data - ownerId, mnemonic");
+    if (typeof params.ownerId === 'undefined') {
+        console.log("missing required data for ownerId");
         return;
     }
+
+    const docProperties = {
+        ownerId: Buffer.from(bs58.decode(params.ownerId)),
+        contractId: params.contractId ? params.contractId : "Bw7U7xUiwoE5wkkrJxbBLdf442TiY63SDvCDZLNrzTHr",
+        documentType: params.documentType ? params.documentType : "thumbnailField",
+        field: avatarUrl,
+        resizeValues: Array.from(params.resizeValues ? params.resizeValues : [1, 1, 1200, 800]),
+    };
+    return docProperties;
+}
+
+
+
+/**
+ * Submits thumbnail document to Platform
+ * @param {*} avatarUrl - thumbnail image url
+ * @param {*} params - document data [contractId, ownerId]
+ */
+async function submitDocument(docProperties, params) {
 
     const clientOpts = {
         network: params.network ? params.network : 'testnet',
         wallet: {
-            mnemonic: mnemonic,
+            mnemonic: params.mnemonic,
             unsafeOptions: {
                 skipSynchronizationBeforeHeight: 650000, // only sync from early-2022
             },
         },
         apps: {
             thumbnailContract: {
-                contractId: contractId,
+                contractId: params.contractId ? params.contractId : "Bw7U7xUiwoE5wkkrJxbBLdf442TiY63SDvCDZLNrzTHr",
             },
         },
     };
 
     const client = new Dash.Client(clientOpts);
 
-    const submitNoteDocument = async () => {
+    const submitThumbnailDocument = async () => {
         const { platform } = client;
-        const identity = await platform.identities.get(ownerId);
-
-        const docProperties = {
-            ownerId: Buffer.from(bs58.decode(ownerId)),
-            contractId: contractId,
-            documentType: documentType,
-            field: field,
-            resizeValues: Array.from(resizeValues),
-        };
+        const identity = await platform.identities.get(params.ownerId);
 
         // Create the thumbnail document
         const thumbnailDocument = await platform.documents.create(
@@ -96,7 +105,7 @@ async function createDocument(avatarUrl, params) {
         return platform.documents.broadcast(documentBatch, identity);
     };
 
-    return submitNoteDocument()
+    return submitThumbnailDocument()
         .then((d) => console.log(d))
         .catch((e) => console.error('Something went wrong:\n', e))
         .finally(() => client.disconnect());
