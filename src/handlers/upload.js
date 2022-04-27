@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 import Dash from 'dash';
 import bs58 from 'bs58';
-import { generateUploadURL } from "../../src/url/generateUrl.js";
+import { generateUploadURL } from "../url/url.js";
 
 
 /**
@@ -27,11 +27,11 @@ export async function uploadImage(image, masternode, params) {
                 const docProperties = await createDocProperties(avatarUrl, params);
                 return await submitDocument(docProperties, params);
             } catch (err) {
-                return console.log(err);
+                return console.error(err);
             }
         }
         )
-        .catch((err) => console.log(err));
+        .catch((err) => console.error(err));
 }
 
 
@@ -44,7 +44,7 @@ export async function uploadImage(image, masternode, params) {
 async function createDocProperties(avatarUrl, params) {
 
     if (typeof params.ownerId === 'undefined') {
-        console.log("missing required data for ownerId");
+        console.error("missing required data for ownerId");
         return;
     }
 
