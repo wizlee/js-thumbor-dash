@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { uploadImage } from "../../src/handlers/upload.js";
 import { retrieveImage } from "../../src/handlers/retrieve.js";
+import { updateImage } from "../../src/handlers/update.js";
 
 const __dirname = path.resolve();
 
@@ -19,8 +20,9 @@ describe('integration tests', async function () {
 
     it('should retrieve image', async () => {
         const response = await retrieveImage(masternode, document);
-        expect(response).equal(document.requestUrl);
-
     });
 
+    it('should update image', async () => {
+        const response = await updateImage(image, masternode, document);
+    });
 });

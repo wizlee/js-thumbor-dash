@@ -58,11 +58,14 @@ async function retrieveDocument(params) {
         return client.platform.documents.get(
             'thumbnailContract.thumbnailField',
             {
-                limit: 1, // Only retrieve 1 document
+                limit: 1,
                 where: [
                     ['ownerId', '==', params.ownerId],
-                    ['$updatedAt', '==', params.updatedAt]
-                ]
+                    ['$updatedAt', '>=', params.updatedAt],
+                ],
+                orderBy: [
+                    ['$updatedAt', 'desc'],
+                ],
             },
         );
     };
