@@ -41,7 +41,7 @@ export async function uploadImage(image, masternode, params) {
  * @param {*} avatarUrl - thumbnail image url
  * @param {*} params - document data [contractId, ownerId]
  */
-async function createDocProperties(avatarUrl, params) {
+export async function createDocProperties(avatarUrl, params) {
 
     if (typeof params.ownerId === 'undefined') {
         console.error("missing required data for ownerId");
