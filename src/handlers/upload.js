@@ -8,7 +8,7 @@ import { generateUploadURL } from "../url/url.js";
  * Uploads an image to the thumbor_dash server
  * @param {*} image - image binary data
  * @param {*} server - server address [ip:port]
- * @param {*} params - document data [contractId, ownerId]
+ * @param {*} params - document data 
  */
 
 export async function uploadImage(image, masternode, params) {
