@@ -2,7 +2,11 @@ import fetch from 'node-fetch';
 import Dash from 'dash';
 import { generateRequestUrl } from '../url/url.js';
 
-
+/**
+ * Retrieves an image from the thumbor_dash server
+ * @param {*} server - server address [ip:port]
+ * @param {*} params - document data 
+ */
 export async function retrieveImage(masternode, params) {
     return createRequestUrl(masternode, params)
         .then((response) => {
