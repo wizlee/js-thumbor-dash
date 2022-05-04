@@ -25,6 +25,8 @@
   "homepage": "https://github.com/mayoreee/js-thumbor-dash#readme",
   "devDependencies": {
     "chai": "^4.3.6",
+    "eslint": "^8.14.0",
+    "eslint-config-google": "^0.14.0",
     "mocha": "^9.2.2"
   },
   "dependencies": {
