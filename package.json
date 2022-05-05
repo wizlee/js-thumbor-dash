@@ -27,8 +27,7 @@
     "chai": "^4.3.6",
     "eslint": "^8.14.0",
     "eslint-config-google": "^0.14.0",
-    "mocha": "^9.2.2",
-    "prettier": "^2.6.2"
+    "mocha": "^9.2.2"
   },
   "dependencies": {
     "bs58": "^5.0.0",
