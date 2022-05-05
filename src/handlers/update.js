@@ -1,85 +1,86 @@
 import fetch from 'node-fetch';
 import Dash from 'dash';
-import bs58 from 'bs58';
-import { generateUploadURL } from "../url/url.js";
-import { createDocProperties } from './upload.js';
-
+import {generateUploadURL} from '../url/url.js';
 
 /**
  * Updates an image to the thumbor_dash server
  * @param {*} image - image binary data
- * @param {*} server - server address [ip:port]
- * @param {*} params - document data 
+ * @param {*} masternode - server address [ip:port]
+ * @param {*} params - document data
  */
-
 export async function updateImage(image, masternode, params) {
+  const uploadUrl = generateUploadURL(masternode);
 
-    const uploadUrl = generateUploadURL(masternode);
-
-    fetch(
-        uploadUrl, {
+  fetch(
+      uploadUrl, {
         method: 'POST',
         body: image,
-    })
-        .then(async (response) => {
-            const avatarUrl = uploadUrl.split("/image")[0] + response.headers.get("location");
+      })
+      .then(async (response) => {
+        const urlPrefix = uploadUrl.split('/image')[0];
+        const urlSuffix = response.headers.get('location');
+        const avatarUrl = urlPrefix + urlSuffix;
 
-            try {
-                return await updateDocument(avatarUrl, params);
-            } catch (err) {
-                return console.error(err);
-            }
+        try {
+          return await updateDocument(avatarUrl, params);
+        } catch (err) {
+          return console.error(err);
         }
-        )
-        .catch((err) => console.error(err));
+      },
+      )
+      .catch((err) => console.error(err));
 }
 
+/**
+ * Updates image document on platform
+ * @param {*} avatarUrl - thumbnail image url
+ * @param {*} params - document data
+ */
 async function updateDocument(avatarUrl, params) {
-    const clientOpts = {
-        network: params.network ? params.network : 'testnet',
-        wallet: {
-            mnemonic: params.mnemonic,
-            unsafeOptions: {
-                skipSynchronizationBeforeHeight: 650000, // only sync from early-2022
-            },
+  const clientOpts = {
+    network: params.network ? params.network : 'testnet',
+    wallet: {
+      mnemonic: params.mnemonic,
+      unsafeOptions: {
+        skipSynchronizationBeforeHeight: 650000, // only sync from early-2022
+      },
+    },
+    apps: {
+      thumbnailContract: {
+        contractId: params.contractId,
+      },
+    },
+  };
+
+  const client = new Dash.Client(clientOpts);
+
+  const updateThumbnailDocument = async function() {
+    const [document] = await client.platform.documents.get(
+        'thumbnailContract.thumbnailField',
+        {
+          limit: 1,
+          where: [
+            ['ownerId', '==', params.ownerId],
+            ['$updatedAt', '>=', params.updatedAt],
+          ],
+          orderBy: [
+            ['$updatedAt', 'desc'],
+          ],
         },
-        apps: {
-            thumbnailContract: {
-                contractId: params.contractId ? params.contractId : "Bw7U7xUiwoE5wkkrJxbBLdf442TiY63SDvCDZLNrzTHr",
-            },
-        },
-    };
+    );
 
-    const client = new Dash.Client(clientOpts);
+    const {platform} = client;
+    const identity = await platform.identities.get(params.ownerId);
 
-    const updateThumbnailDocument = async function () {
+    // Update document
+    document.set('field', avatarUrl);
 
-        const [document] = await client.platform.documents.get(
-            'thumbnailContract.thumbnailField',
-            {
-                limit: 1,
-                where: [
-                    ['ownerId', '==', params.ownerId],
-                    ['$updatedAt', '>=', params.updatedAt],
-                ],
-                orderBy: [
-                    ['$updatedAt', 'desc'],
-                ],
-            },
-        );
+    // Sign and submit the document replace transition
+    return platform.documents.broadcast({replace: [document]}, identity);
+  };
 
-        const { platform } = client;
-        const identity = await platform.identities.get(params.ownerId);
-
-        // Update document
-        document.set('field', avatarUrl);
-
-        // Sign and submit the document replace transition
-        return platform.documents.broadcast({ replace: [document] }, identity);
-    };
-
-    return updateThumbnailDocument()
-        .then((d) => console.log(d))
-        .catch((e) => console.error('Something went wrong:\n', e))
-        .finally(() => client.disconnect());
+  return updateThumbnailDocument()
+      .then((d) => console.log(d))
+      .catch((e) => console.error('Something went wrong:\n', e))
+      .finally(() => client.disconnect());
 }
