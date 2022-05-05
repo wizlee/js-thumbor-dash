@@ -1,10 +1,9 @@
-import fetch from 'node-fetch';
-import Dash from 'dash';
-import { generateRequestUrl } from '../url/url.js';
+import Dash from 'dash'
+import { generateRequestUrl } from '../url/url.js'
 
 /**
  * Retrieves an image from the thumbor_dash server
- * @param {*} server - server address [ip:port]
+ * @param {*} masternode - server address [ip:port]
  * @param {*} params - document data 
  */
 export async function retrieveImage(masternode, params) {
@@ -22,12 +21,12 @@ async function createRequestUrl(masternode, params) {
                 width: params.width,
                 height: params.height,
                 requesterId: params.requesterId,
-                contractId: params.contractId ? params.contractId : "Bw7U7xUiwoE5wkkrJxbBLdf442TiY63SDvCDZLNrzTHr",
-                documentType: params.documentType ? params.documentType : "thumbnailField",
+                contractId: params.contracId,
+                documentType: params.documentType,
                 field: avatarUrl,
                 ownerId: params.ownerId,
                 updatedAt: params.updatedAt,
-                requesterPubKey: params.requesterPubKey
+                requesterPubKey: params.requesterPubKey,
             };
 
             const requestUrl = generateRequestUrl(masternode, data);
