@@ -2,9 +2,9 @@
 /* eslint-disable no-unused-vars */
 import fs from 'fs';
 import path from 'path';
-import {uploadImage} from '../../src/handlers/upload.js';
-import {retrieveImage} from '../../src/handlers/retrieve.js';
-import {updateImage} from '../../src/handlers/update.js';
+import {uploadImage} from '../../src/methods/upload.js';
+import {retrieveImage} from '../../src/methods/retrieve.js';
+import {updateImage} from '../../src/methods/update.js';
 
 const __dirname = path.resolve();
 
