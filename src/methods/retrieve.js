@@ -106,17 +106,3 @@ async function fetchImage(url) {
       })
       .catch((err) => console.err);
 }
-
-
-retrieveImage('localhost:8888', {
-  'width': 1200,
-  'height': 800,
-  'requesterId': '3GVAAkyWDK68V92Evy4jrnYyBJamri8bXQakWbMedr93',
-  'field': 'http://localhost:8888/image/2b6c18d3e8b14e5d8b8165f09d3f9742/image.jpg',
-  'ownerId': '3GVAAkyWDK68V92Evy4jrnYyBJamri8bXQakWbMedr93',
-  'contractId': 'Bw7U7xUiwoE5wkkrJxbBLdf442TiY63SDvCDZLNrzTHr',
-  'documentType': 'thumbnailField',
-  'resizeValues': [1, 1, 1200, 800],
-  'updatedAt': 1651914389215,
-  'requesterPubKey': 'AzkvyH6Czn09/3THMdOFW89VSkBBrJgpk+T6GYCY3HJa',
-});
