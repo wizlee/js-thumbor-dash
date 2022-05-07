@@ -7,8 +7,10 @@ import {generateRequestUrl} from '../url/url.js';
  * @param {*} params - document data
  */
 export async function retrieveImage(masternode, params) {
+  // TODO funtion should return an image - not image url
   return createRequestUrl(masternode, params)
       .then((response) => {
+        console.log(response);
         return response;
       })
       .catch((err) => console.error(err));
@@ -26,7 +28,7 @@ async function createRequestUrl(masternode, params) {
           width: params.width,
           height: params.height,
           requesterId: params.requesterId,
-          contractId: params.contracId,
+          contractId: params.contractId,
           documentType: params.documentType,
           field: avatarUrl,
           ownerId: params.ownerId,
@@ -91,3 +93,4 @@ async function retrieveDocument(params) {
       .catch((e) => console.error('Something went wrong:\n', e))
       .finally(() => client.disconnect());
 }
+
