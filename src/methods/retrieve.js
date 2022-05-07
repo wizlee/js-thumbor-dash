@@ -1,5 +1,7 @@
 import Dash from 'dash';
+import fetch from 'node-fetch';
 import {generateRequestUrl} from '../url/url.js';
+// import terminalImage from 'terminal-image';
 
 /**
  * Retrieves an image from the thumbor_dash server
@@ -9,9 +11,8 @@ import {generateRequestUrl} from '../url/url.js';
 export async function retrieveImage(masternode, params) {
   // TODO funtion should return an image - not image url
   return createRequestUrl(masternode, params)
-      .then((response) => {
-        console.log(response);
-        return response;
+      .then((requestUrl) => {
+        return fetchImage(requestUrl);
       })
       .catch((err) => console.error(err));
 }
@@ -94,3 +95,28 @@ async function retrieveDocument(params) {
       .finally(() => client.disconnect());
 }
 
+/**
+ * Dowloads a network image, given a url
+ * @param {*} url - image url
+ */
+async function fetchImage(url) {
+  return fetch(url)
+      .then((res) => {
+        return res;
+      })
+      .catch((err) => console.err);
+}
+
+
+retrieveImage('localhost:8888', {
+  'width': 1200,
+  'height': 800,
+  'requesterId': '3GVAAkyWDK68V92Evy4jrnYyBJamri8bXQakWbMedr93',
+  'field': 'http://localhost:8888/image/2b6c18d3e8b14e5d8b8165f09d3f9742/image.jpg',
+  'ownerId': '3GVAAkyWDK68V92Evy4jrnYyBJamri8bXQakWbMedr93',
+  'contractId': 'Bw7U7xUiwoE5wkkrJxbBLdf442TiY63SDvCDZLNrzTHr',
+  'documentType': 'thumbnailField',
+  'resizeValues': [1, 1, 1200, 800],
+  'updatedAt': 1651914389215,
+  'requesterPubKey': 'AzkvyH6Czn09/3THMdOFW89VSkBBrJgpk+T6GYCY3HJa',
+});
