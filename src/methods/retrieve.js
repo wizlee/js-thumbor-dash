@@ -5,12 +5,12 @@ import {generateRequestUrl} from '../url/url.js';
 
 /**
  * Retrieves an image from the thumbor_dash server
- * @param {*} masternode - server address [ip:port]
- * @param {*} params - document data
+    * @param {string} masternode - server address [ip:port]
+    * @param {ThumbnailClientOptions} options - document data
  */
-export async function retrieveImage(masternode, params) {
+export async function retrieveImage(masternode, options) {
   // TODO funtion should return an image - not image url
-  return createRequestUrl(masternode, params)
+  return createRequestUrl(masternode, options)
       .then((requestUrl) => {
         return fetchImage(requestUrl);
       })
@@ -20,21 +20,21 @@ export async function retrieveImage(masternode, params) {
 /**
  * Creates an thumbor_dash image retrieval URL
  * @param {*} masternode - server address [ip:port]
- * @param {*} params - document data
+ * @param {*} options - document data
  */
-async function createRequestUrl(masternode, params) {
-  return createImageUrl(params)
+async function createRequestUrl(masternode, options) {
+  return createImageUrl(options)
       .then((avatarUrl) => {
         const data = {
-          width: params.width,
-          height: params.height,
-          requesterId: params.requesterId,
-          contractId: params.contractId,
-          documentType: params.documentType,
+          width: options.width,
+          height: options.height,
+          requesterId: options.requesterId,
+          contractId: options.contractId,
+          documentType: options.documentType,
           field: avatarUrl,
-          ownerId: params.ownerId,
-          updatedAt: params.updatedAt,
-          requesterPubKey: params.requesterPubKey,
+          ownerId: options.ownerId,
+          updatedAt: options.updatedAt,
+          requesterPubKey: options.requesterPubKey,
         };
 
         const requestUrl = generateRequestUrl(masternode, data);
@@ -45,10 +45,10 @@ async function createRequestUrl(masternode, params) {
 
 /**
  * Creates a valid image url
- * @param {*} params - document data
+ * @param {*} options - document data
  */
-async function createImageUrl(params) {
-  return retrieveDocument(params)
+async function createImageUrl(options) {
+  return retrieveDocument(options)
       .then((thumbnailDoc) => {
         const imageUrl = thumbnailDoc.field;
         return imageUrl;
@@ -58,13 +58,13 @@ async function createImageUrl(params) {
 
 /**
  * Retrieves an existing image document from thumbor_dash server
- * @param {*} params - document data
+ * @param {*} options - document data
  */
-async function retrieveDocument(params) {
+async function retrieveDocument(options) {
   const clientOpts = {
     apps: {
       thumbnailContract: {
-        contractId: params.contractId,
+        contractId: options.contractId,
       },
     },
   };
@@ -76,8 +76,8 @@ async function retrieveDocument(params) {
         {
           limit: 1,
           where: [
-            ['ownerId', '==', params.ownerId],
-            ['$updatedAt', '>=', params.updatedAt],
+            ['ownerId', '==', options.ownerId],
+            ['$updatedAt', '>=', options.updatedAt],
           ],
           orderBy: [
             ['$updatedAt', 'desc'],
