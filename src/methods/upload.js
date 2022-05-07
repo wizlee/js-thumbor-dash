@@ -6,11 +6,11 @@ import {generateUploadURL} from '../url/url.js';
 
 /**
  * Uploads an image to the thumbor_dash server
- * @param {*} image - image binary data
- * @param {*} masternode - server address [ip:port]
- * @param {*} params - document data
+    * @param {Buffer} image - image binary data
+    * @param {string} masternode - server address [ip:port]
+    * @param {ThumbnailClientOptions} options - document data
  */
-export async function uploadImage(image, masternode, params) {
+export async function uploadImage(image, masternode, options) {
   const uploadUrl = generateUploadURL(masternode);
 
   fetch(
@@ -23,8 +23,8 @@ export async function uploadImage(image, masternode, params) {
         const urlSuffix = response.headers.get('location');
         const avatarUrl = urlPrefix + urlSuffix;
         try {
-          const docProperties = await createDocProperties(avatarUrl, params);
-          return await submitDocument(docProperties, params);
+          const docProperties = await createDocProperties(avatarUrl, options);
+          return await submitDocument(docProperties, options);
         } catch (err) {
           return console.error(err);
         }
@@ -36,20 +36,20 @@ export async function uploadImage(image, masternode, params) {
 /**
  * Creates thumbnail document properties
  * @param {*} avatarUrl - thumbnail image url
- * @param {*} params - document data [contractId, ownerId]
+ * @param {*} options - document data [contractId, ownerId]
  */
-export async function createDocProperties(avatarUrl, params) {
-  if (typeof params.ownerId === 'undefined') {
+export async function createDocProperties(avatarUrl, options) {
+  if (typeof options.ownerId === 'undefined') {
     console.error('missing required data for ownerId');
     return;
   }
 
   const docProperties = {
-    ownerId: Buffer.from(bs58.decode(params.ownerId)),
-    contractId: params.contractId,
-    documentType: params.documentType ? params.documentType : 'thumbnailField',
+    ownerId: Buffer.from(bs58.decode(options.ownerId)),
+    contractId: options.contractId,
+    documentType: options.documentType,
     field: avatarUrl,
-    resizeValues: Array.from(params.resizeValues),
+    resizeValues: Array.from(options.resizeValues),
   };
 
   return docProperties;
@@ -59,20 +59,20 @@ export async function createDocProperties(avatarUrl, params) {
 /**
  * Submits thumbnail document to Platform
  * @param {*} docProperties - thumbnail image document properties
- * @param {*} params - document data
+ * @param {*} options - document data
  */
-async function submitDocument(docProperties, params) {
+async function submitDocument(docProperties, options) {
   const clientOpts = {
-    network: params.network ? params.network : 'testnet',
+    network: options.network ? options.network : 'testnet',
     wallet: {
-      mnemonic: params.mnemonic,
+      mnemonic: options.mnemonic,
       unsafeOptions: {
         skipSynchronizationBeforeHeight: 650000, // only sync from early-2022
       },
     },
     apps: {
       thumbnailContract: {
-        contractId: params.contractId,
+        contractId: options.contractId,
       },
     },
   };
@@ -81,7 +81,7 @@ async function submitDocument(docProperties, params) {
 
   const submitThumbnailDocument = async () => {
     const {platform} = client;
-    const identity = await platform.identities.get(params.ownerId);
+    const identity = await platform.identities.get(options.ownerId);
 
     // Create the thumbnail document
     const thumbnailDocument = await platform.documents.create(

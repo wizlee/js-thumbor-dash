@@ -6,9 +6,9 @@ import {generateUploadURL} from '../url/url.js';
  * Updates an image to the thumbor_dash server
  * @param {*} image - image binary data
  * @param {*} masternode - server address [ip:port]
- * @param {*} params - document data
+ * @param {*} options - document data
  */
-export async function updateImage(image, masternode, params) {
+export async function updateImage(image, masternode, options) {
   const uploadUrl = generateUploadURL(masternode);
 
   fetch(
@@ -22,7 +22,7 @@ export async function updateImage(image, masternode, params) {
         const avatarUrl = urlPrefix + urlSuffix;
 
         try {
-          return await updateDocument(avatarUrl, params);
+          return await updateDocument(avatarUrl, options);
         } catch (err) {
           return console.error(err);
         }
@@ -34,20 +34,20 @@ export async function updateImage(image, masternode, params) {
 /**
  * Updates image document on platform
  * @param {*} avatarUrl - thumbnail image url
- * @param {*} params - document data
+ * @param {*} options - document data
  */
-async function updateDocument(avatarUrl, params) {
+async function updateDocument(avatarUrl, options) {
   const clientOpts = {
-    network: params.network ? params.network : 'testnet',
+    network: options.network ? options.network : 'testnet',
     wallet: {
-      mnemonic: params.mnemonic,
+      mnemonic: options.mnemonic,
       unsafeOptions: {
         skipSynchronizationBeforeHeight: 650000, // only sync from early-2022
       },
     },
     apps: {
       thumbnailContract: {
-        contractId: params.contractId,
+        contractId: options.contractId,
       },
     },
   };
@@ -60,8 +60,8 @@ async function updateDocument(avatarUrl, params) {
         {
           limit: 1,
           where: [
-            ['ownerId', '==', params.ownerId],
-            ['$updatedAt', '>=', params.updatedAt],
+            ['ownerId', '==', options.ownerId],
+            ['$updatedAt', '>=', options.updatedAt],
           ],
           orderBy: [
             ['$updatedAt', 'desc'],
@@ -70,7 +70,7 @@ async function updateDocument(avatarUrl, params) {
     );
 
     const {platform} = client;
-    const identity = await platform.identities.get(params.ownerId);
+    const identity = await platform.identities.get(options.ownerId);
 
     // Update document
     document.set('field', avatarUrl);
