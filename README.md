@@ -39,7 +39,6 @@ try {
 ```js
 import { ThumbnailClient } from 'js-thumbor-dash';
 
-const masternode = 'localhost:8888'; // Server address [ip:port]
 const options = {
   network: 'testnet',
   masternode: 'localhost:8888', // Server address [ip:port]
