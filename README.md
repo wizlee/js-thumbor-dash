@@ -13,16 +13,16 @@ npm install git+https://github.com/mayoreee/js-thumbor-dash.git
 #### Upload Image
 
 ```js
-import { ThumbnailClient } from "js-thumbor-dash";
+import { ThumbnailClient } from 'js-thumbor-dash';
 
 const options = {
-  network: "testnet",
-  masternode: "localhost:8888", // Server address [ip:port]
-  contractId: "Bw7U7xUiwoE5wkkrJxbBLdf442TiY63SDvCDZLNrzTHr",
-  documentType: "thumbnailField",
-  mnemonic: "< Insert mnemonic >", // Owner's wallet mnemonic
-  ownerId: "< Insert owner identity >", // Owner's identity
-  image: "< Insert image Buffer data >", // Image is a Buffer type
+  network: 'testnet',
+  masternode: 'localhost:8888', // Server address [ip:port]
+  contractId: 'Bw7U7xUiwoE5wkkrJxbBLdf442TiY63SDvCDZLNrzTHr',
+  documentType: 'thumbnailField',
+  mnemonic: '< Insert mnemonic >', // Owner's wallet mnemonic
+  ownerId: '< Insert owner identity >', // Owner's identity
+  image: '< Insert image Buffer data >', // Image is a Buffer type
   resizeValues: [minWidth, minHeight, maxWidth, maxHeight], // Image resize constraints
 };
 
@@ -67,16 +67,16 @@ try {
 #### Update Image
 
 ```js
-import { ThumbnailClient } from "js-thumbor-dash";
+import { ThumbnailClient } from 'js-thumbor-dash';
 
 const options = {
-  network: "testnet",
-  masternode: "localhost:8888", // Server address [ip:port]
-  contractId: "Bw7U7xUiwoE5wkkrJxbBLdf442TiY63SDvCDZLNrzTHr",
-  mnemonic: "< Insert mnemonic >", // Owner's wallet mnemonic
-  ownerId: "< Insert owner identity >", // Owner's identity
+  network: 'testnet',
+  masternode: 'localhost:8888', // Server address [ip:port]
+  contractId: 'Bw7U7xUiwoE5wkkrJxbBLdf442TiY63SDvCDZLNrzTHr',
+  mnemonic: '< Insert mnemonic >', // Owner's wallet mnemonic
+  ownerId: '< Insert owner identity >', // Owner's identity
   updatedAt: 10292902020, // Integer timestamp
-  image: "< Insert new image Buffer data >", // Image is a Buffer type
+  image: '< Insert new image Buffer data >', // Image is a Buffer type
 };
 
 const client = new ThumbnailClient(options);
