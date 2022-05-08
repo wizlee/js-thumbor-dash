@@ -5,12 +5,11 @@ import {generateRequestUrl} from '../url/url.js';
 
 /**
  * Retrieves an image from the thumbor_dash server
-    * @param {string} masternode - server address [ip:port]
-    * @param {ThumbnailClientOptions} options - document data
+    * @param {ThumbnailClientOptions} options
  */
-export async function retrieveImage(masternode, options) {
+export async function retrieveImage(options) {
   // TODO funtion should return an image - not image url
-  return createRequestUrl(masternode, options)
+  return createRequestUrl(options)
       .then((requestUrl) => {
         return fetchImage(requestUrl);
       })
@@ -19,13 +18,12 @@ export async function retrieveImage(masternode, options) {
 
 /**
  * Creates an thumbor_dash image retrieval URL
- * @param {*} masternode - server address [ip:port]
  * @param {*} options - document data
  */
-async function createRequestUrl(masternode, options) {
+async function createRequestUrl(options) {
   return createImageUrl(options)
       .then((avatarUrl) => {
-        const data = {
+        const params = {
           width: options.width,
           height: options.height,
           requesterId: options.requesterId,
@@ -37,7 +35,7 @@ async function createRequestUrl(masternode, options) {
           requesterPubKey: options.requesterPubKey,
         };
 
-        const requestUrl = generateRequestUrl(masternode, data);
+        const requestUrl = generateRequestUrl(options.masternode, params);
         return requestUrl;
       })
       .catch((err) => console.error(err));
@@ -62,6 +60,7 @@ async function createImageUrl(options) {
  */
 async function retrieveDocument(options) {
   const clientOpts = {
+    network: options.network ? options.network : 'testnet',
     apps: {
       thumbnailContract: {
         contractId: options.contractId,
