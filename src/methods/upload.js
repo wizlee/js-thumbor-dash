@@ -6,17 +6,15 @@ import {generateUploadURL} from '../url/url.js';
 
 /**
  * Uploads an image to the thumbor_dash server
-    * @param {Buffer} image - image binary data
-    * @param {string} masternode - server address [ip:port]
-    * @param {ThumbnailClientOptions} options - document data
+    * @param {ThumbnailClientOptions} options
  */
-export async function uploadImage(image, masternode, options) {
-  const uploadUrl = generateUploadURL(masternode);
+export async function uploadImage(options) {
+  const uploadUrl = generateUploadURL(options.masternode);
 
   fetch(
       uploadUrl, {
         method: 'POST',
-        body: image,
+        body: options.image,
       })
       .then(async (response) => {
         const urlPrefix = uploadUrl.split('/image')[0];

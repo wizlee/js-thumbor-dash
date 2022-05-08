@@ -8,6 +8,7 @@
     "width": 1200,
     "height": 800,
     "requesterId": "C3xiaSLeFxLG21YceD865KALYGxt4Ht23RxzUECJyAfd",
+    "resizeValues": [1,1,1200,800],
     "updatedAt": 1651111994157,
     "masternode": "localhost:8888",
     "imagePath": "../js-thumbor-dash/tests/data/images/example.jpg",
