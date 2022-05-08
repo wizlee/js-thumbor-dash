@@ -1,6 +1,6 @@
-import {retrieveImage} from './handlers/retrieve.js';
-import {updateImage} from './handlers/update.js';
-import {uploadImage} from './handlers/upload.js';
+import {retrieveImage} from './methods/retrieve.js';
+import {updateImage} from './methods/update.js';
+import {uploadImage} from './methods/upload.js';
 
 
 // eslint-disable-next-line require-jsdoc
