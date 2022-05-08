@@ -2,7 +2,7 @@
   "name": "js-thumbor-dash",
   "version": "0.0.1",
   "description": "A universal JavaScript library for integrating Dash's distributed image thumbnail service in client applications",
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
     "test": "npm run test:unit && npm run test:integration",
     "test:unit": "mocha tests/unit/*.js",
