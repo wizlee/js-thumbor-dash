@@ -1,5 +1,4 @@
 import Dash from 'dash';
-import fetch from 'node-fetch';
 import {generateRequestUrl} from '../url/url.js';
 // import terminalImage from 'terminal-image';
 
