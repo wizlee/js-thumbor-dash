@@ -1,6 +1,7 @@
 import Dash from 'dash';
 import {generateRequestUrl} from '../url/url.js';
 // import terminalImage from 'terminal-image';
+import fetch from 'node-fetch';
 
 /**
  * Retrieves an image from the thumbor_dash server

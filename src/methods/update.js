@@ -1,6 +1,6 @@
 import Dash from 'dash';
 import {generateUploadURL} from '../url/url.js';
-
+import fetch from 'node-fetch';
 /**
  * Updates an image to the thumbor_dash server
  * @param {ThumbnailClientOptions} options
