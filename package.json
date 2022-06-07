@@ -32,7 +32,7 @@
   "dependencies": {
     "bs58": "^5.0.0",
     "crypto-js": "^4.1.1",
-    "dash": "^3.22.1",
+    "dash": "^3.22.12",
     "node-fetch": "^3.2.4"
   },
   "type": "module"
