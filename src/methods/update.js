@@ -1,6 +1,6 @@
+import axios from 'axios';
 import Dash from 'dash';
 import {generateUploadURL} from '../url/url.js';
-import fetch from 'node-fetch';
 /**
  * Updates an image to the thumbor_dash server
  * @param {ThumbnailClientOptions} options
@@ -8,14 +8,10 @@ import fetch from 'node-fetch';
 export async function updateImage(options) {
   const uploadUrl = generateUploadURL(options.masternode);
 
-  fetch(
-      uploadUrl, {
-        method: 'POST',
-        body: options.image,
-      })
+  axios.post(uploadUrl, options.image)
       .then(async (response) => {
         const urlPrefix = uploadUrl.split('/image')[0];
-        const urlSuffix = response.headers.get('location');
+        const urlSuffix = response.headers.location;
         const avatarUrl = urlPrefix + urlSuffix;
 
         try {

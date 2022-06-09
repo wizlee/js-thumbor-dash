@@ -1,7 +1,7 @@
 import Dash from 'dash';
 import bs58 from 'bs58';
 import {generateUploadURL} from '../url/url.js';
-import fetch from 'node-fetch';
+import axios from 'axios';
 
 /**
  * Uploads an image to the thumbor_dash server
@@ -10,14 +10,11 @@ import fetch from 'node-fetch';
 export async function uploadImage(options) {
   const uploadUrl = generateUploadURL(options.masternode);
 
-  fetch(
-      uploadUrl, {
-        method: 'POST',
-        body: options.image,
-      })
+  axios.post(uploadUrl, options.image)
       .then(async (response) => {
         const urlPrefix = uploadUrl.split('/image')[0];
-        const urlSuffix = response.headers.get('location');
+        const urlSuffix = response.headers.location;
+
         const avatarUrl = urlPrefix + urlSuffix;
         try {
           const docProperties = await createDocProperties(avatarUrl, options);
