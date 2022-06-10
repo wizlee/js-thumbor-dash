@@ -1,16 +1,16 @@
 {
     "mnemonic": "bulk chimney foam muscle detail matter snake purchase science exile upon marriage where history notice antique arm lawn upgrade hope athlete foam hidden false",
-    "ownerId": "3GVAAkyWDK68V92Evy4jrnYyBJamri8bXQakWbMedr93",
-    "contractId": "Bw7U7xUiwoE5wkkrJxbBLdf442TiY63SDvCDZLNrzTHr",
+    "ownerId": "856aSH6uEBaHpndZYXDk72NJbZqXokNSPGrs8nKbd7QL",
+    "contractId": "DbBHu3Ct1zD1AYAiw58V7QXT22B3k7qRLDLfaXqiRQp5",
     "field": "http://localhost:8888/image/090cfb65bbb043c0944caee5cc911ebd/image.jpg",
     "documentType": "thumbnailField",
-    "requesterPubKey": "AjAJVltu3GiSz9Sd4ZnTF1gYg/zesSXuaXi6LRoplsN",
+    "requesterPubKey": "AupCW+B0nNl8j/lccXuIPvlbdesyTTHnR/7gLrwde7qu",
     "width": 1200,
     "height": 800,
-    "requesterId": "C3xiaSLeFxLG21YceD865KALYGxt4Ht23RxzUECJyAfd",
+    "requesterId": "856aSH6uEBaHpndZYXDk72NJbZqXokNSPGrs8nKbd7QL",
     "resizeValues": [1,1,1200,800],
     "updatedAt": 1651111994157,
     "masternode": "localhost:8888",
     "imagePath": "../js-thumbor-dash/tests/data/images/example.jpg",
-    "requestUrl": "http://localhost:8888/n1KIR548-IhuiC_ZVL-7WWPvGnhK6MZ3eK-48NLV17s=/1200x800/dashauth:requester(C3xiaSLeFxLG21YceD865KALYGxt4Ht23RxzUECJyAfd):contract(Bw7U7xUiwoE5wkkrJxbBLdf442TiY63SDvCDZLNrzTHr):document(thumbnailField):field(http://localhost:8888/image/090cfb65bbb043c0944caee5cc911ebd/image.jpg):owner(3GVAAkyWDK68V92Evy4jrnYyBJamri8bXQakWbMedr93):updatedAt(1651111994157)/filters:format(jpeg)/http%3A//localhost%3A8888/image/090cfb65bbb043c0944caee5cc911ebd/image.jpg"
+    "requestUrl": "http://localhost:8888/e-jZs6wPyJBBggcnqnI3PVYeqeChc-JC9QGKwRefh6M=/1200x800/dashauth:requester(856aSH6uEBaHpndZYXDk72NJbZqXokNSPGrs8nKbd7QL):contract(DbBHu3Ct1zD1AYAiw58V7QXT22B3k7qRLDLfaXqiRQp5):document(thumbnailField):field(avatarUrl):owner(856aSH6uEBaHpndZYXDk72NJbZqXokNSPGrs8nKbd7QL):updatedAt(1654864287788)/filters:format(jpeg)/http%3A//localhost%3A8888/image/090cfb65bbb043c0944caee5cc911ebd/image.jpg"
 }

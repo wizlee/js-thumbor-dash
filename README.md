@@ -18,7 +18,7 @@ import { ThumbnailClient } from 'js-thumbor-dash';
 const options = {
   network: 'testnet',
   masternode: 'localhost:8888', // Server address [ip:port]
-  contractId: 'Bw7U7xUiwoE5wkkrJxbBLdf442TiY63SDvCDZLNrzTHr',
+  contractId: 'DbBHu3Ct1zD1AYAiw58V7QXT22B3k7qRLDLfaXqiRQp5',
   documentType: 'thumbnailField',
   mnemonic: '< Insert mnemonic >', // Owner's wallet mnemonic
   ownerId: '< Insert owner identity >', // Owner's identity
@@ -44,7 +44,7 @@ import { ThumbnailClient } from 'js-thumbor-dash';
 const options = {
   network: 'testnet',
   masternode: 'localhost:8888', // Server address [ip:port]
-  contractId: 'Bw7U7xUiwoE5wkkrJxbBLdf442TiY63SDvCDZLNrzTHr',
+  contractId: 'DbBHu3Ct1zD1AYAiw58V7QXT22B3k7qRLDLfaXqiRQp5',
   documentType: 'thumbnailField',
   ownerId: '< Insert owner identity >', // Owner's identity
   updatedAt: 10292902020, // Integer timestamp
@@ -72,7 +72,7 @@ import { ThumbnailClient } from 'js-thumbor-dash';
 const options = {
   network: 'testnet',
   masternode: 'localhost:8888', // Server address [ip:port]
-  contractId: 'Bw7U7xUiwoE5wkkrJxbBLdf442TiY63SDvCDZLNrzTHr',
+  contractId: 'DbBHu3Ct1zD1AYAiw58V7QXT22B3k7qRLDLfaXqiRQp5',
   mnemonic: '< Insert mnemonic >', // Owner's wallet mnemonic
   ownerId: '< Insert owner identity >', // Owner's identity
   updatedAt: 10292902020, // Integer timestamp
