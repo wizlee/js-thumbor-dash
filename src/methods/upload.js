@@ -2,6 +2,8 @@ import Dash from 'dash';
 import bs58 from 'bs58';
 import {generateUploadURL} from '../url/url.js';
 import axios from 'axios';
+import {Buffer} from 'buffer';
+
 
 /**
  * Uploads an image to the thumbor_dash server
