@@ -12,5 +12,5 @@
     "updatedAt": 1651111994157,
     "masternode": "localhost:8888",
     "imagePath": "../js-thumbor-dash/tests/data/images/example.jpg",
-    "requestUrl": "http://localhost:8888/e-jZs6wPyJBBggcnqnI3PVYeqeChc-JC9QGKwRefh6M=/1200x800/dashauth:requester(856aSH6uEBaHpndZYXDk72NJbZqXokNSPGrs8nKbd7QL):contract(DbBHu3Ct1zD1AYAiw58V7QXT22B3k7qRLDLfaXqiRQp5):document(thumbnailField):field(avatarUrl):owner(856aSH6uEBaHpndZYXDk72NJbZqXokNSPGrs8nKbd7QL):updatedAt(1654864287788)/filters:format(jpeg)/http%3A//localhost%3A8888/image/090cfb65bbb043c0944caee5cc911ebd/image.jpg"
+    "requestUrl": "http://localhost:8888/ltbuo_rpk0xK-Ku1CXimbwSwqdeAQQgwG-vMXdOMvmo=/1200x800/dashauth:requester(856aSH6uEBaHpndZYXDk72NJbZqXokNSPGrs8nKbd7QL):contract(DbBHu3Ct1zD1AYAiw58V7QXT22B3k7qRLDLfaXqiRQp5):document(thumbnailField):field(http://localhost:8888/image/090cfb65bbb043c0944caee5cc911ebd/image.jpg):owner(856aSH6uEBaHpndZYXDk72NJbZqXokNSPGrs8nKbd7QL):updatedAt(1651111994157)/filters:format(jpeg)/http%3A//localhost%3A8888/image/090cfb65bbb043c0944caee5cc911ebd/image.jpg"
 }
