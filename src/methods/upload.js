@@ -12,21 +12,40 @@ import {Buffer} from 'buffer';
 export async function uploadImage(options) {
   const uploadUrl = generateUploadURL(options.masternode);
 
-  axios.post(uploadUrl, options.image)
-      .then(async (response) => {
-        const urlPrefix = uploadUrl.split('/image')[0];
-        const urlSuffix = response.headers.location;
+  // await axios.post(uploadUrl, options.image)
+  //     .then(async (response) => {
+  //       const urlPrefix = uploadUrl.split('/image')[0];
+  //       const urlSuffix = response.headers.location;
 
-        const avatarUrl = urlPrefix + urlSuffix;
-        try {
-          const docProperties = await createDocProperties(avatarUrl, options);
-          return await submitDocument(docProperties, options);
-        } catch (err) {
-          return console.error(err);
-        }
-      },
-      )
-      .catch((err) => console.error(err));
+  //       const avatarUrl = urlPrefix + urlSuffix;
+  //       try {
+  //         const docProperties = await createDocProperties(avatarUrl, options);
+  //         return await submitDocument(docProperties, options);
+  //       } catch (err) {
+  //         return console.error(err);
+  //       }
+  //     },
+  //     )
+  //     .catch((err) => console.error(err));
+
+  try {
+    let response = await axios.post(uploadUrl, options.image);
+    const urlPrefix = uploadUrl.split('/image')[0];
+    const urlSuffix = response.headers.location;
+
+    const avatarUrl = urlPrefix + urlSuffix;
+    try {
+      const docProperties = await createDocProperties(avatarUrl, options);
+      return await submitDocument(docProperties, options);
+    } catch (err) {
+      console.error(err);
+      throw "Fail to createDocProperties or submitDocument";
+    }
+  } catch (err) {
+    console.error(err);
+    throw "Fail to upload image via axios post";
+  }
+
 }
 
 /**
@@ -95,8 +114,17 @@ async function submitDocument(docProperties, options) {
     return platform.documents.broadcast(documentBatch, identity);
   };
 
-  return submitThumbnailDocument()
-      .then((d) => console.log(d))
-      .catch((e) => console.error('Something went wrong:\n', e))
-      .finally(() => client.disconnect());
+  try {
+    return await submitThumbnailDocument();
+  } catch (err) {
+    console.log(err);
+    throw "Fail to submitThumbnailDocument";
+  }
+  finally {
+    client.disconnect();
+  }
+  // return submitThumbnailDocument()
+  //     .then((d) => console.log(d))
+  //     .catch((e) => console.error('Something went wrong:\n', e))
+  //     .finally(() => client.disconnect());
 }

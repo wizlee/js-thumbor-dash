@@ -1,0 +1,16 @@
+{
+    "mnemonic": "coyote economy all primary lend afford fragile curve pistol appear harsh manage",
+    "ownerId": "DqqGf974AATMVooU7vSjycVV3fBvNda4tXjZYHAFgiQr",
+    "contractId": "GaJLaomBKwUXWRXrTV825rmuFn9aMwr5YCsYWUEayEiT",
+    "field": "https://github.com/thumbor/thumbor/raw/master/docs/images/feature_detection_original.jpg",
+    "documentType": "thumbnailField",
+    "requesterPubKey": "AgBKg0P1VnNYbl4Ery8GQmAX35ZVL94AJffEyPVHcyHs",
+    "width": 500,
+    "height": 200,
+    "requesterId": "DqqGf974AATMVooU7vSjycVV3fBvNda4tXjZYHAFgiQr",
+    "resizeValues": [1, 1, 500, 200],
+    "updatedAt": 1664294880735,
+    "thumbor_host": "localhost:8888",
+    "imagePath": "https://github.com/thumbor/thumbor/raw/master/docs/images/feature_detection_original.jpg",
+    "requestUrl": "http://localhost:8888/F1pPUM7UhjVm9TddQQ_P2Q9YgK7zTB6z8d5OLXMFZoQ=/500x200/dashauth:requester(DqqGf974AATMVooU7vSjycVV3fBvNda4tXjZYHAFgiQr):contract(GaJLaomBKwUXWRXrTV825rmuFn9aMwr5YCsYWUEayEiT):document(thumbnailField):field(https://github.com/thumbor/thumbor/raw/master/docs/images/feature_detection_original.jpg):owner(DqqGf974AATMVooU7vSjycVV3fBvNda4tXjZYHAFgiQr):updatedAt(1664294880735)/filters:format(jpeg)/https%3A//github.com/thumbor/thumbor/raw/master/docs/images/feature_detection_original.jpg"
+}
