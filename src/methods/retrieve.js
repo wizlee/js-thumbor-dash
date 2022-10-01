@@ -98,7 +98,7 @@ async function retrieveDocument(options) {
  * @param {*} url - image url
  */
 async function fetchImage(url) {
-  return axios.get(url)
+  return await axios.get(url)
       .then((res) => {
         return res;
       })
