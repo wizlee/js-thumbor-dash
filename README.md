@@ -30,7 +30,7 @@ const client = new ThumbnailClient(options);
 
 try {
   const res = await client.upload();
-  console.log(res.json());
+  console.log(res.toJSON()));
 } catch (err) {
   console.error(err);
 }
@@ -58,7 +58,7 @@ const client = new ThumbnailClient(options);
 
 try {
   const res = await client.retrieve();
-  console.log(res.json());
+  console.log(res.toJSON());
 } catch (err) {
   console.error(err);
 }
@@ -83,7 +83,7 @@ const client = new ThumbnailClient(options);
 
 try {
   const res = await client.update();
-  console.log(res.json());
+  console.log(res.toJSON());
 } catch (err) {
   console.error(err);
 }

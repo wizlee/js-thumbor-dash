@@ -8,7 +8,7 @@ import {generateUploadURL} from '../url/url.js';
 export async function updateImage(options) {
   const uploadUrl = generateUploadURL(options.masternode);
 
-  axios.post(uploadUrl, options.image)
+  return await axios.post(uploadUrl, options.image)
       .then(async (response) => {
         const urlPrefix = uploadUrl.split('/image')[0];
         const urlSuffix = response.headers.location;
