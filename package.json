@@ -34,7 +34,7 @@
     "bs58": "^5.0.0",
     "buffer": "^6.0.3",
     "crypto-js": "^4.1.1",
-    "dash": "^3.23.0-alpha.1"
+    "dash": "^3.23.0-alpha.8"
   },
   "type": "module"
 }
