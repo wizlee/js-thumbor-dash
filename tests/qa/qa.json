@@ -1,16 +1,16 @@
 {
-    "mnemonic": "coyote economy all primary lend afford fragile curve pistol appear harsh manage",
-    "ownerId": "DqqGf974AATMVooU7vSjycVV3fBvNda4tXjZYHAFgiQr",
-    "contractId": "GaJLaomBKwUXWRXrTV825rmuFn9aMwr5YCsYWUEayEiT",
+    "mnemonic": "range evolve under slide over gas cabbage burger there domain dial stadium",
+    "ownerId": "Z1tMMeYuJL7u84LJ3kuBgs1cXk11Y3eCrMgfAzoGuse",
+    "contractId": "8QvVzLopDHtKNxqu5A9TVputcSdTYaeBtvP9AQhhVYYg",
     "field": "https://github.com/thumbor/thumbor/raw/master/docs/images/feature_detection_original.jpg",
     "documentType": "thumbnailField",
-    "requesterPubKey": "AgBKg0P1VnNYbl4Ery8GQmAX35ZVL94AJffEyPVHcyHs",
+    "requesterPubKey": "A8ZWw/0ZFa5o70seP0mEyjBGQZ3pAXz87XyztUr4Bnka",
     "width": 500,
     "height": 200,
-    "requesterId": "DqqGf974AATMVooU7vSjycVV3fBvNda4tXjZYHAFgiQr",
+    "requesterId": "Z1tMMeYuJL7u84LJ3kuBgs1cXk11Y3eCrMgfAzoGuse",
     "resizeValues": [1, 1, 500, 200],
     "updatedAt": 1664294880735,
     "thumbor_host": "localhost:8888",
     "imagePath": "https://github.com/thumbor/thumbor/raw/master/docs/images/feature_detection_original.jpg",
-    "requestUrl": "http://localhost:8888/F1pPUM7UhjVm9TddQQ_P2Q9YgK7zTB6z8d5OLXMFZoQ=/500x200/dashauth:requester(DqqGf974AATMVooU7vSjycVV3fBvNda4tXjZYHAFgiQr):contract(GaJLaomBKwUXWRXrTV825rmuFn9aMwr5YCsYWUEayEiT):document(thumbnailField):field(https://github.com/thumbor/thumbor/raw/master/docs/images/feature_detection_original.jpg):owner(DqqGf974AATMVooU7vSjycVV3fBvNda4tXjZYHAFgiQr):updatedAt(1664294880735)/filters:format(jpeg)/https%3A//github.com/thumbor/thumbor/raw/master/docs/images/feature_detection_original.jpg"
+    "requestUrl": "http://localhost:8888/Rut9bWNViJO-DO7CVqVn4ZV6cMpKcHhJ545MIHh2UJE=/500x200/dashauth:requester(Z1tMMeYuJL7u84LJ3kuBgs1cXk11Y3eCrMgfAzoGuse):contract(8QvVzLopDHtKNxqu5A9TVputcSdTYaeBtvP9AQhhVYYg):document(thumbnailField):field(https://github.com/thumbor/thumbor/raw/master/docs/images/feature_detection_original.jpg):owner(Z1tMMeYuJL7u84LJ3kuBgs1cXk11Y3eCrMgfAzoGuse):updatedAt(1664294880735)/filters:format(jpeg)/https%3A//github.com/thumbor/thumbor/raw/master/docs/images/feature_detection_original.jpg"
 }

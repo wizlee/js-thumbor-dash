@@ -29,8 +29,8 @@ const options = {
 
 const client = new ThumbnailClient(options);
 
-// urlTest();
-await uploadTest();
+urlTest();
+// await uploadTest();
 // await retrieveTest();
 
 
