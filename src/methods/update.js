@@ -48,8 +48,9 @@ async function updateDocument(avatarUrl, options) {
   const client = new Dash.Client(clientOpts);
 
   const updateThumbnailDocument = async function() {
+    const appAndDocString = 'thumbnailContract.thumbnailField';
     const [document] = await client.platform.documents.get(
-        'thumbnailContract.thumbnailField',
+      appAndDocString,
         {
           limit: 1,
           where: [
@@ -69,11 +70,14 @@ async function updateDocument(avatarUrl, options) {
     document.set('field', avatarUrl);
 
     // Sign and submit the document replace transition
-    return platform.documents.broadcast({replace: [document]}, identity);
+    platform.documents.broadcast({replace: [document]}, identity);
+
+    // return the better string formated document object
+    return platform.documents.get(appAndDocString, {});
   };
 
   return updateThumbnailDocument()
-      .then((d) => console.log(d))
+      .then((d) => d)
       .catch((e) => console.error('Something went wrong:\n', e))
       .finally(() => client.disconnect());
 }

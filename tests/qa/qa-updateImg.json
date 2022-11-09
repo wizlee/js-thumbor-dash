@@ -1,0 +1,16 @@
+{
+    "mnemonic": "range evolve under slide over gas cabbage burger there domain dial stadium",
+    "ownerId": "Z1tMMeYuJL7u84LJ3kuBgs1cXk11Y3eCrMgfAzoGuse",
+    "contractId": "8QvVzLopDHtKNxqu5A9TVputcSdTYaeBtvP9AQhhVYYg",
+    "field": "https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg",
+    "documentType": "thumbnailField",
+    "requesterPubKey": "A8ZWw/0ZFa5o70seP0mEyjBGQZ3pAXz87XyztUr4Bnka",
+    "width": 400,
+    "height": 600,
+    "requesterId": "Z1tMMeYuJL7u84LJ3kuBgs1cXk11Y3eCrMgfAzoGuse",
+    "resizeValues": [1, 1, 400, 600],
+    "updatedAt": 1664294880735,
+    "thumbor_host": "localhost:8888",
+    "imagePath": "https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg",
+    "requestUrl": "http://localhost:8888/W1YebyEvbsMJYGgn_hirSnYRxZPBjQdec_uFthxq82c=/400x600/dashauth:requester(Z1tMMeYuJL7u84LJ3kuBgs1cXk11Y3eCrMgfAzoGuse):contract(8QvVzLopDHtKNxqu5A9TVputcSdTYaeBtvP9AQhhVYYg):document(thumbnailField):field(https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg):owner(Z1tMMeYuJL7u84LJ3kuBgs1cXk11Y3eCrMgfAzoGuse):updatedAt(1664294880735)/filters:format(jpeg)/https%3A//images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg"
+}

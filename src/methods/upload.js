@@ -80,10 +80,11 @@ async function submitDocument(docProperties, options) {
     const identity = await platform.identities.get(options.ownerId);
 
     // Create the thumbnail document
+    const appAndDocString = "thumbnailContract.thumbnailField";
     const thumbnailDocument = await platform.documents.create(
-        'thumbnailContract.thumbnailField',
-        identity,
-        docProperties,
+      appAndDocString,
+      identity,
+      docProperties,
     );
 
     const documentBatch = {
@@ -92,11 +93,16 @@ async function submitDocument(docProperties, options) {
       delete: [], // Document(s) to delete
     };
     // Sign and submit the document(s)
-    return platform.documents.broadcast(documentBatch, identity);
+    platform.documents.broadcast(documentBatch, identity);
+
+    // return the better string formated document object
+    return platform.documents.get(appAndDocString, {
+      limit: 2, // Only retrieve 1 document
+    });
   };
 
   return submitThumbnailDocument()
-      .then((d) => console.log(d))
+      .then((d) => d) // return the document object
       .catch((e) => console.error('Something went wrong:\n', e))
       .finally(() => client.disconnect());
 }
